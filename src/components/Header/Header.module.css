@@ -1,0 +1,321 @@
+/* Header Principal */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 60%;
+    margin: 0 auto 0 90px;
+    padding: 15px 30px;
+    color: white;
+    font-family: Arial, sans-serif;
+    background: transparent;
+    z-index: 1000;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  /* Ícone de Menu */
+  .hamburger {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Logo + Tooltip alinhados */
+  .logoContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px; /* Espaço entre o logo e o ícone */
+  }
+  
+  /* Estilização do Logo */
+  .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 24px;
+  }
+  
+  /* Letras do Logo */
+  .letter {
+    display: inline-block;
+    transition: transform 0.9s;
+    font-family: "Inter", sans-serif;
+    font-weight: 900;
+    font-size: 2.2rem;
+    line-height: 1; /* Ajuste para alinhar verticalmente */
+    letter-spacing: -1px;
+  }
+  
+  .letter:hover {
+    transform: rotateY(180deg);
+  }
+  
+  /* Tooltip */
+  .tooltipContainer {
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  /* Ícone de "?" */
+  .questionIcon {
+    background-color: #f4a261;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.3s ease-in-out;
+  }
+  
+  .tooltipContainer:hover .questionIcon {
+    background-color: #e76f51;
+  }
+  
+  /* Caixa de texto do tooltip */
+  .tooltipText {
+    visibility: hidden;
+    width: 350px;
+    background-color: rgba(0, 0, 0, 0.85);
+    color: white;
+    text-align: left;
+    padding: 10px;
+    border-radius: 6px;
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    font-size: 12px;
+    white-space: normal;
+    line-height: 1.5;
+  }
+  
+  .tooltipContainer:hover .tooltipText {
+    visibility: visible;
+    opacity: 1;
+    box-shadow: 0 0 5px rgba(96, 96, 96, 0.5);
+  }
+  
+  /* Botão da Conta */
+  .accountButton, .accountButtonMenu {
+    background: linear-gradient(120deg, #444, #222);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background 0.3s ease-in, background-color 0.6s ease-out;
+  }
+  
+  .accountButton, .accountButtonMenu:hover {
+    background: linear-gradient(120deg, #f4a261, #e76f51);
+  }
+
+  .arrow {
+    font-size: 20px; /* Tamanho da seta */
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .accountButton:hover .arrow {
+    transform: translateX(5px); /* Move suavemente para a direita */
+  }
+  
+  /* Overlay e Menu Lateral */
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+  }
+  
+  .overlayVisible {
+    opacity: 1;
+    visibility: visible;
+    z-index: 999 !important;
+  }
+  
+  .menu {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 100vw;
+    height: 100%;
+    background: #2d2d2dd6;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: left 0.3s ease-in-out;
+  }
+  
+  .menuOpen {
+    left: 0;
+  }
+  
+  .menu ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+  }
+  
+  .menu ul li {
+    margin: 60px 0;
+  }
+  
+  .menu ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 3rem;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .menu ul li a:hover {
+    color: #f4a261;
+  }
+  
+  .closeButton {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 24px;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+  }
+  
+  
+  @media (max-width: 768px) {
+    .header {
+      width: 100%;
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0 auto;
+    }
+  
+    /* Ajuste no Container do Logo */
+    .logoContainer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px; /* Reduzindo espaço entre logo e ? */
+      position: relative;
+    }
+  
+    /* Ajuste no Logo */
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  
+    /* Reduzindo tamanho das letras */
+    .letter {
+      font-size: 1.6rem;
+      letter-spacing: -1px;
+    }
+  
+    /* Ícone de "?" */
+    .tooltipContainer {
+      margin-top: 2px;
+    }
+  
+    .questionIcon {
+      font-size: 10px;
+      width: 14px;
+      height: 14px;
+    }
+  
+    .tooltipText {
+      width: 160px;
+      font-size: 10px;
+    }
+  
+    /* Ajuste no botão "Minha Conta" */
+    .accountButton {
+      display: none;
+    }
+    .hamburger {
+      position: relative;
+      left: 40px;
+    }
+    .menu ul li a {
+      font-size: 2rem;
+    }
+    .menu ul li {
+        margin: 30px 0;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .header {
+      padding: 30px 15px;
+    }
+  
+    .logoContainer {
+      gap: 3px;
+      margin: 0 auto;
+    }
+  
+    .letter {
+      font-size: 2rem;
+    }
+  
+    .tooltipContainer {
+      margin-top: 1px;
+    }
+  
+    .questionIcon {
+      font-size: 14px;
+      width: 20px;
+      height: 20px;
+    }
+  
+    .tooltipText {
+      width: 340px;
+      font-size: 14px;
+      transform: translateX(-80%);
+    }
+  
+    .accountButton {
+      font-size: 11px;
+      padding: 7px 12px;
+    }
+  }
+  @media (min-width:991px) {
+    .accountButtonMenu {
+        display: none;
+    }
+  }
+  

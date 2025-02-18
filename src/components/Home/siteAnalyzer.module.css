@@ -1,0 +1,186 @@
+
+.container {
+  min-height: 100vh;
+  text-align: center;
+  padding-top: 80px; /* Garante espaço abaixo do header fixo */
+}
+
+.content {
+  max-width: 1200px;
+  margin: 10rem auto;
+}
+
+.titleAbout, .animatedTitle {
+  width: 100%;
+}
+
+.animatedTitle {
+  font-size: 5rem;
+  font-weight: bold;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.899) 15%, rgb(134, 134, 134) 70%, rgb(76, 76, 76));
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: bubbleGradient 25s infinite ease-in-out;
+}
+
+@keyframes bubbleGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 200% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.inputGroup {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 2.4rem auto;
+  width: 60%;
+}
+
+.input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #5858587a;
+  width: 60%;
+  background: #5858587a;
+  outline: none;
+  color: white;
+  height: 30px;
+}
+
+.input:focus {
+  border-color: #949494;
+  box-shadow: 0 0 5px rgba(96, 96, 96, 0.5);
+}
+
+.button {
+  padding: 18px 30px;
+  background-color: #393939;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  white-space: nowrap;
+  margin-left: 10px;
+  transition: .3s all;
+}
+
+.button:hover {
+  box-shadow: 0 0 5px rgba(186, 186, 186, 0.5);
+  transform: scale(1.1);
+  transition: .3s all;
+  background: linear-gradient(120deg, #f4a261, #e76f51);
+}
+
+.pAbout {
+  font-size: 2rem;
+  color: rgba(255, 255, 255, 0.488);
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+.blurredSection {
+  position: relative;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.blurredText {
+  font-size: 18px;
+  color: #fff;
+}
+
+.unlockButton {
+  background-color: #ff9800;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.popupContent {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  width: 300px;
+}
+
+.registerButton {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.closeButton {
+  background-color: red;
+  color: white;
+  padding: 10px;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .titleAbout {
+    font-size: 3.3rem;
+    margin-bottom: 10px;
+  }
+
+  .inputGroup {
+    flex-direction: column;
+    gap: 15px;
+    width: 90%;
+  }
+
+  .button {
+    width: 100%;
+    margin-left: 0;
+  }
+  .pAbout {
+    font-size: 14px;
+  }
+  .input {
+    width: 90%;
+    padding: 15px;
+}
+}
