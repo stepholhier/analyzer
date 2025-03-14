@@ -7,15 +7,16 @@ import OpenAILogo from '../../assets/openailogo.svg';
 
 const SiteAnalyzer = () => {
   const [url, setUrl] = useState('');
-  const [report, setReport] = useState({
-    topics: [
-      { name: "SEO", status: "ok" },
-      { name: "Velocidade", status: "error", suggestion: "Melhore o tempo de carregamento." },
-      { name: "Segurança", status: "ok" },
-      { name: "Banners", status: "ok" },
-      { name: "Logo", status: "error", suggestion: "Melhore a qualidade do logo e tamanho" }
-    ]
-  }
+  const [report, setReport] = useState( false
+  //   {
+  //   topics: [
+  //     { name: "SEO", status: "ok" },
+  //     { name: "Velocidade", status: "error", suggestion: "Melhore o tempo de carregamento." },
+  //     { name: "Segurança", status: "ok" },
+  //     { name: "Banners", status: "ok" },
+  //     { name: "Logo", status: "error", suggestion: "Melhore a qualidade do logo e tamanho" }
+  //   ]
+  // }
   );
   const [showPopup, setShowPopup] = useState(false);
   const vantaRef = useRef(null);
@@ -132,7 +133,7 @@ const SiteAnalyzer = () => {
           <div className={styles.popupContent}>
             <h3>Obtenha o relatório completo</h3>
             <p>Cadastre-se agora para acessar todas as informações do seu site.</p>
-            <button className={styles.registerButton} onClick={() => window.location.href = "/register"}>
+            <button className={styles.registerButton} onClick={() => window.location.href = "/signin"}>
               Criar Conta
             </button>
             <button className={styles.closeButton} onClick={() => setShowPopup(false)}>
