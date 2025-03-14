@@ -120,7 +120,7 @@ const SiteAnalyzer = () => {
         ))}
       </ul>
 
-      <button className={styles.unlockButton} onClick={() => setShowPopup(true)}>
+      <button className={styles.unlockButton} onClick={() => window.location.href = "/signin"}>
         <LockKey size={16} /> Quero meu relatório completo
       </button>
     </div>
@@ -128,7 +128,7 @@ const SiteAnalyzer = () => {
 )}
       </div>
 
-      {showPopup && (
+      {/* {showPopup && (
         <div className={styles.popup}>
           <div className={styles.popupContent}>
             <h3>Obtenha o relatório completo</h3>
@@ -141,7 +141,7 @@ const SiteAnalyzer = () => {
             </button>
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 };
