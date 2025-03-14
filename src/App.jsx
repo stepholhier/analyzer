@@ -1,11 +1,11 @@
-import SiteAnalyzer from './components/Home/siteAnalyzer';
+import Home from './components/Home/Home';
 import Header from '../src/components/Header/Header';
 
 const App = () => {
   return (
     <div>
       <Header />
-      <SiteAnalyzer />
+      <Home />
     </div>
   );
 };
