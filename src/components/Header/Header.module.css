@@ -1,10 +1,9 @@
-/* Header Principal - Ocupa 100% da largura */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  max-width: 1400px; /* Limita o tamanho do conteúdo interno */
+  max-width: 1400px; 
   padding: 15px 40px;
   margin: 0 auto;
   position: fixed;
@@ -17,15 +16,15 @@
   margin-right: 17rem;
 }
 
-/* Container para logo + menu (centralizado mas sem ir para a esquerda extrema) */
+
 .logoMenuContainer {
   display: flex;
   align-items: center;
-  gap: 50px; /* Espaço entre o logo e o menu */
-  margin-left: 10%; /* Mantém o bloco mais para o meio, sem colar na borda */
+  gap: 50px; 
+  margin-left: 10%; 
 }
 
-/* Estilização do Logo */
+
 .logo {
   display: flex;
   align-items: center;
@@ -35,7 +34,7 @@
   color: white;
 }
 
-/* Letras do Logo */
+
 .letter {
   display: inline-block;
   transition: transform 0.9s;
@@ -50,7 +49,7 @@
   transform: rotateY(180deg);
 }
 
-/* Menu ao lado do Logo */
+
 .navMenu {
   display: flex;
   gap: 30px;
@@ -68,7 +67,7 @@
   color: white;
 }
 
-/* Botão Entrar no canto direito */
+
 .entrar {
   font-size: 13px;
   font-weight: 300;
@@ -82,14 +81,130 @@
   color: white;
 }
 
-  
-  @media (max-width: 768px) {
-  }
-  
-  @media (max-width: 480px) {
-    
+
+
+/* == MENU MOBILE == */
+@media (max-width: 768px) {
+  .hamburger {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
   }
 
+  .hamburger svg {
+    position: relative;
+    left: 20px;
+    margin-left: 10px;
+  }
+
+  .logo {
+    position: relative;
+    left: 3px;
+  }
+
+  .menuOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50vh;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    transform: translateY(-100%);
+    opacity: 0;
+    z-index: 999;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
+
+   
+   .menuOpen {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  
+  .closeButton {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+  
+  .menu ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .menu ul li {
+    margin: 20px 0;
+  }
+
+  .menu ul li a {
+    text-decoration: none;
+    color: #b0b0b0;
+    font-size: 13px;
+    font-weight: 300;
+    transition: color 0.3s ease-in-out;
+  }
+
+  .menu ul li a:hover {
+    color: rgba(0, 255, 170, 0.7);
+  }
+
+  
+  .whatsappButton {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: white;
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 20px;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .whatsappButton:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.6);
+  }
+
+  .whatsappIcon {
+    color: white;
+  }
+
+  .logoMenuContainer {
+    margin-left: 12%;
+  }
+  .entrar {
+    margin-right: 2%;
+  }
+}
+
+/* == Config MAC == */
   @media (max-width: 1600px) {
     .header {
       margin-right: 0rem;

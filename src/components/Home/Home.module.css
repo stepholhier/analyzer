@@ -354,4 +354,16 @@ z-index: -1;
     width: 90%;
     padding: 15px;
 }
+  .containerBlurred {
+    padding: 0px 5px 0px 5px;
+  }
+  .suggestion {
+    font-size: 12px;
+  }
+  .reportItem {
+    font-size: 12px;
+  }
+  .successMessage {
+    font-size: 12px;
+  }
 }

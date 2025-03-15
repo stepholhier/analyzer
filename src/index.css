@@ -13,3 +13,7 @@ a {
   text-decoration: none;
   font-family: 'Inter' sans-serif;
 }
+
+html {
+  scroll-behavior: smooth;
+}

@@ -18,7 +18,7 @@ const SiteAnalyzer = () => {
    ]
  }
   );
-  const [showPopup, setShowPopup] = useState(false);
+  // const [showPopup, setShowPopup] = useState(false);
   const vantaRef = useRef(null);
 
   useEffect(() => {
@@ -80,6 +80,7 @@ const SiteAnalyzer = () => {
         </div>
 
         {report && (
+          <div className={styles.containerBlurred}>
   <div className={styles.blurredSection}>
     <h3 className={styles.reportTitle}>Relatório de Análise</h3>
 
@@ -124,6 +125,7 @@ const SiteAnalyzer = () => {
         <LockKey size={16} /> Quero meu relatório completo
       </button>
     </div>
+  </div>
   </div>
 )}
       </div>
