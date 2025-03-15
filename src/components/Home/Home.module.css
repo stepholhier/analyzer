@@ -8,6 +8,7 @@
 .content {
   max-width: 1200px;
   margin: 0rem auto;
+  padding: 0rem 0rem 7rem 0rem;
 }
 
 .titleAbout, .animatedTitle {
@@ -330,6 +331,344 @@ z-index: -1;
   box-shadow: 0 0 10px rgba(0, 255, 170, 0.5);
 }
 
+
+/* == AREA ABOUT == */
+
+.sectionWrapper {
+  background-color: black;
+  padding: 80px 0 150px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.animatedSection {
+  text-align: left;
+  max-width: 1200px;
+  width: 100%;
+  padding: 0 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.animatedSection h2 {
+  font-size: 2.5rem;
+  color: white;
+  margin-bottom: 40px;
+  font-weight: 300;
+}
+
+.cardsContainer {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  padding: 20px;
+  width: 320px;
+  text-align: left;
+  color: white;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+  border: 1px solid #ffffff14;
+}
+
+.card img {
+  width: 100%;
+  border-radius: 6px;
+}
+
+.card h3 {
+  font-size: 1.2rem;
+  margin-top: 20px;
+  padding-top: 20px;
+  font-weight: 300;
+  border-top: 1px solid #ffffff2e;
+  color: #d6d6d6;
+}
+
+.card p {
+  font-size: 0.75rem;
+  color: #b0b0b0;
+  line-height: 1.6;
+  margin-top: 10px;
+}
+
+/* Fundo com a imagem no canto */
+.sectionWrapper::before {
+  content: "";
+    position: absolute;
+    top: -10px;
+    right: 270px;
+    width: 320px;
+    height: 400px;
+    background: url(/src/assets/3dob.png) no-repeat center;
+    background-size: contain;
+    opacity: 0.4;
+    z-index: 1;
+}
+
+/* SEÇÃO DE PREÇOS */
+.priceSection {
+  position: relative;
+  padding: 100px 0;
+  text-align: center;
+  background: black; /* Fundo preto total */
+  overflow: hidden;
+}
+
+.priceSection::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  background: url("../../assets/price-bg.svg") no-repeat center;
+  background-size: cover;
+  opacity: 1;
+  transform: translateX(-50%);
+  z-index: 0;
+}
+
+.priceSection::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 0.9) 70%);
+  transform: translateX(-50%);
+  z-index: 1;
+  pointer-events: none; /* Garante que o degradê não interfira nos cliques */
+}
+
+.priceBg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.2;
+  z-index: 0;
+}
+
+.priceContainer {
+  position: relative;
+  z-index: 1;
+  background: transparent; /* Sem fundo, deixa a grade visível */
+}
+
+.priceCard {
+  background: black; /* Deixa apenas o card preto */
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 30px;
+  width: 380px;
+  margin: 0 auto;
+  text-align: left;
+  color: white;
+  position: relative;
+}
+
+.priceTitle {
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: white;
+}
+
+.priceSubtitle {
+  font-size: 1rem;
+  color: #b0b0b0;
+  margin-bottom: 40px;
+  margin-top: 20px;
+}
+
+
+.limitedOffer {
+  position: absolute;
+  top: -15px; /* Sobe um pouco acima do card */
+  left: -15px; /* Sai um pouco para fora */
+  background: black;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: bold;
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Borda sutil branca */
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.fireIcon {
+  width: 18px;
+  height: 18px;
+}
+
+
+.planName {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.planDesc {
+  font-size: 0.95rem;
+  color: #b0b0b0;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+.planPrice {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.planPrice span {
+  font-size: 1rem;
+  color: #b0b0b0;
+}
+
+.priceButton {
+  display: block;
+  width: 100%;
+  background: white;
+  color: black;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 12px;
+  border-radius: 8px;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.priceButton:hover {
+  background: #e0e0e0;
+}
+
+/* LISTA DE BENEFÍCIOS */
+.benefitsList {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.benefitsList li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.95rem;
+  color: #d0d0d0;
+  margin-bottom: 8px;
+}
+
+.checkIcon {
+  color: #4caf50;
+}
+
+
+/* SEÇÃO FAQ */
+.faqSection {
+  padding: 200px 0 200px 0;
+  text-align: center;
+  background: black;
+  overflow: hidden;
+}
+
+.faqContainer {
+  width: 70%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+  text-align: left;
+}
+
+/* LADO ESQUERDO (Título + Imagem) */
+.faqLeft {
+  flex: 1;
+  max-width: 450px;
+}
+
+.faqTitle {
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.faqSubtitle {
+  font-size: 1rem;
+  color: #b0b0b0;
+  margin-bottom: 20px;
+  font-weight: 300;
+}
+
+.faqImage {
+  width: 220px;
+  height: auto;
+  margin-top: 20px;
+}
+
+/* LADO DIREITO (FAQ) */
+.faqRight {
+  flex: 2;
+  max-width: 700px;
+}
+
+/* LISTA DE FAQ */
+.faqItem {
+  background: rgb(255 255 255 / 5%);
+  border-radius: 8px;
+  padding: 15px 20px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+  border: 1px solid #ffffff1e;
+}
+
+.faqItem:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.faqQuestion {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  font-size: 0.85rem;
+  font-weight: 300;
+}
+
+.faqAnswer {
+  margin-top: 10px;
+  color: #b0b0b0;
+  font-size: 0.7rem;
+  line-height: 1.4;
+}
+
+/* Ícone de abrir/fechar */
+.icon {
+  color: white;
+  transition: transform 0.3s ease-in-out;
+}
+
+.faqOpen .icon {
+  transform: rotate(45deg);
+}
+
+
 /* Responsividade */
 @media (max-width: 768px) {
   .titleAbout {
@@ -337,10 +676,30 @@ z-index: -1;
     margin-bottom: 10px;
   }
 
+  .animatedSection {
+    padding: 6px;
+  }
+
+  .animatedSection h2 {
+    font-size: 1.5rem;
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+  .sectionWrapper::before {
+    content: "";
+    position: absolute;
+    top: -80px;
+    right: -100px;
+    width: 320px;
+  }
+
   .inputGroup {
     flex-direction: column;
     gap: 15px;
     width: 90%;
+  }
+  .content {
+    padding: 0rem;
   }
 
   .button {
@@ -365,5 +724,17 @@ z-index: -1;
   }
   .successMessage {
     font-size: 12px;
+  }
+  .faqContainer {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .faqLeft {
+    max-width: 100%;
+  }
+
+  .faqImage {
+    margin: 20px auto;
   }
 }

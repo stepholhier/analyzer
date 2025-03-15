@@ -1,0 +1,65 @@
+.politicsContainer {
+    height: 110vh; /* Ocupa toda a altura da tela */
+    background: black; /* Fundo preto total */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Alinha o conteúdo no topo */
+    align-items: center;
+    color: white;
+    padding-top: 40px; /* Ajusta a posição do conteúdo */
+}
+
+.backButton {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: background 0.3s ease-in-out;
+    width: fit-content;
+}
+
+.backButton:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Container interno para alinhar à esquerda */
+.contentWrapper {
+    width: 80%; /* Mantém centralizado, mas largo o suficiente */
+    max-width: 900px; /* Define um limite para telas grandes */
+    text-align: left;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 20px; /* Espaçamento para separar do texto */
+}
+
+.text {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #b0b0b0;
+    margin-bottom: 20px;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.list {
+    list-style-type: disc;
+    margin-left: 20px;
+    color: #b0b0b0;
+}

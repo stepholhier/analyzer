@@ -3,20 +3,28 @@ import axios from 'axios';
 import styles from './Home.module.css';
 import { CheckCircle, XCircle, LockKey } from "@phosphor-icons/react";
 import OpenAILogo from '../../assets/openailogo.svg';
+import  AreaAbout from './AreaAbout';
+import Price from './Price';
+import Faq from './Faq';
 
 
 const SiteAnalyzer = () => {
+
+  useEffect(() => {
+    document.title = "Analyzer";
+  }, []);
+  
   const [url, setUrl] = useState('');
-  const [report, setReport] = useState(
-        {
-    topics: [
-     { name: "SEO", status: "ok" },
-     { name: "Velocidade", status: "error", suggestion: "Melhore o tempo de carregamento." },
-     { name: "Segurança", status: "ok" },
-     { name: "Banners", status: "ok" },
-     { name: "Logo", status: "error", suggestion: "Melhore a qualidade do logo e tamanho" }
-   ]
- }
+  const [report, setReport] = useState(false
+  //       {
+  //    topics: [
+  //     { name: "SEO", status: "ok" },
+  //    { name: "Velocidade", status: "error", suggestion: "Melhore o tempo de carregamento." },
+  //     { name: "Segurança", status: "ok" },
+  //     { name: "Banners", status: "ok" },
+  //     { name: "Logo", status: "error", suggestion: "Melhore a qualidade do logo e tamanho" }
+  //   ]
+  // }
   );
   // const [showPopup, setShowPopup] = useState(false);
   const vantaRef = useRef(null);
@@ -52,7 +60,7 @@ const SiteAnalyzer = () => {
   };
 
   return (
-    <div ref={vantaRef} className={styles.container}>
+    <div ref={vantaRef} className={styles.container} id="siteInput">
       <div className={styles.technologyBadge}>
     <span>Com tecnologia oficial da</span>
     <img src={OpenAILogo} alt="OpenAI Logo" className={styles.badgeIcon} />
@@ -144,6 +152,16 @@ const SiteAnalyzer = () => {
           </div>
         </div>
       )} */}
+
+
+    {/* Área About */}
+        <AreaAbout />
+
+    {/* Price */}
+        <Price />
+
+      {/* FAQ */}
+      <Faq />
     </div>
   );
 };

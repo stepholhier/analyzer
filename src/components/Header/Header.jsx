@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Flipped } from "react-flip-toolkit";
 import { List, X, WhatsappLogo } from "@phosphor-icons/react"; // Ícones do menu e WhatsApp
@@ -32,15 +33,15 @@ const Header = () => {
           )}
 
           {/* Logo */}
-          <a href="https://www.google.com.br">
-            <h1 className={styles.logo}>
-              {["A", "N", "A", "L", "Y", "Z", "E", "R"].map((letter, index) => (
-                <Flipped key={index} flipId={`letter-${index}`}>
-                  <span className={styles.letter}>{letter}</span>
-                </Flipped>
-              ))}
-            </h1>
-          </a>
+            <Link to="/">
+              <h1 className={styles.logo}>
+                {["A", "N", "A", "L", "Y", "Z", "E", "R"].map((letter, index) => (
+                  <Flipped key={index} flipId={`letter-${index}`}>
+                    <span className={styles.letter}>{letter}</span>
+                  </Flipped>
+                ))}
+              </h1>
+            </Link>
 
           {/* Menu Desktop */}
           {!isMobile && (
