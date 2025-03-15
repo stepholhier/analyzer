@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Home from "./components/Home/Home";
+import Login from "./components/Login/Login";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Terms from "./components/Politics/Terms";
@@ -25,6 +26,7 @@ const App = () => {
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/termos" element={<Terms />} />
           <Route path="/privacidade" element={<Privacy />} />
         </Routes>

@@ -1,0 +1,189 @@
+/* Container do Login */
+.loginContainer {
+    position: relative;
+    height: 100vh;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  
+  /* Adicionando o SVG de fundo */
+  .loginContainer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background: url("../../assets/price-bg.svg") no-repeat center;
+    background-size: cover;
+    opacity: 1;
+    transform: translateX(-50%);
+    z-index: 0;
+  }
+  
+  .loginContainer::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 0.9) 70%);
+    transform: translateX(-50%);
+    z-index: 1;
+  }
+  
+  /* Estilizando o Box de Login */
+  .loginBox {
+    position: relative;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+    width: 400px;
+  }
+  
+  /* Logo */
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #41a87b;
+    margin-bottom: 20px;
+  }
+  
+  /* Botão de Login com Google */
+  .googleButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background: #121212;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .googleButton:hover {
+    background: rgba(255, 255, 255, 0.15);
+  }
+  
+  /* Separador */
+  .separator {
+    margin: 20px 0;
+    font-size: 14px;
+    color: #b0b0b0;
+    position: relative;
+  }
+  
+  .separator::before,
+  .separator::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 40%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.2);
+  }
+  
+  .separator::before {
+    left: 0;
+  }
+  
+  .separator::after {
+    right: 0;
+  }
+  
+  /* Campo de Email */
+  .inputGroup {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-bottom: 15px;
+  }
+  
+  .inputGroup label {
+    font-size: 14px;
+    color: white;
+    margin-bottom: 5px;
+  }
+  
+  .inputGroup input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: transparent;
+    color: white;
+    font-size: 14px;
+  }
+  
+  .inputGroup input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+  
+  /* Botão de Login */
+  .loginButton {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background: #0e5a3f;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .loginButton:hover {
+    background: #127c55;
+  }
+  
+  /* Texto dos Termos */
+  .termsText {
+    font-size: 12px;
+    color: #b0b0b0;
+    margin-top: 20px;
+  }
+  
+  .termsText a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .termsText a:hover {
+    text-decoration: underline;
+  }
+  
+  .logo {
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 24px;
+    color: white;
+  }
+  
+  .letter {
+    display: inline-block;
+    transition: transform 0.9s;
+    font-family: "Inter", sans-serif;
+    font-weight: 900;
+    font-size: 2.2rem;
+    letter-spacing: -1px;
+  }
+  
+  .letter:hover {
+    transform: rotateY(180deg);
+  }

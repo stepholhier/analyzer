@@ -54,7 +54,7 @@ const Header = () => {
         </div>
 
         {/* Botão "Entrar" no canto direito */}
-        <a href="signin" className={styles.entrar}>Entrar</a>
+        <a href="login" className={styles.entrar}>Entrar</a>
       </header>
 
       {/* MENU MOBILE */}
