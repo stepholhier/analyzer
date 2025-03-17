@@ -58,4 +58,10 @@
   .legalLinks a:hover {
     text-decoration: underline;
   }
+
+  @media (max-width: 767px) {
+    .footer {
+      padding: 40px;
+    }
+  }
   
