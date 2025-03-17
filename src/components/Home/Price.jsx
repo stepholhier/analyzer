@@ -60,7 +60,7 @@ const Price = () => {
           <img src={FireGif} alt="Fogo animado" className={styles.fireIcon} />
             Por tempo limitado
           </span>
-          <h3 className={styles.planName}>Pioneiros</h3>
+          <h3 className={styles.planName}>Impulso</h3>
           <p className={styles.planDesc}>
             Otimize seu site com nossa análise avançada e personalizada
           </p>
