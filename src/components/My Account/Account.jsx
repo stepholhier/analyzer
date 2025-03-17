@@ -1,10 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./Account.module.css";
 import { User, ShoppingCart, FileText, SignOut } from "@phosphor-icons/react";
 import { useNavigate } from "react-router-dom";
 import AccountData from './AccountData';
 
 const Account = () => {
+
+  useEffect(() => {
+    document.title = "Minha Conta";
+  }, []);
+
   const [selected, setSelected] = useState("dados");
   const navigate = useNavigate();
 
