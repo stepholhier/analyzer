@@ -9,8 +9,8 @@ const Account = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    // Lógica para logout, ex: limpar token, etc.
-    navigate("/"); // Redireciona para home
+    localStorage.setItem("isLoggedIn", "false"); // Marca como deslogado
+    navigate("/login"); // Redireciona
   };
 
   return (

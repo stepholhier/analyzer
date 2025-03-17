@@ -1,10 +1,19 @@
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Flipped } from "react-flip-toolkit";
 import styles from "./Login.module.css";
 import { GoogleLogo } from "@phosphor-icons/react";
 
 const Login = () => {
+
+  const navigate = useNavigate();
+
+const handleLogin = () => {
+  localStorage.setItem("isLoggedIn", "true");  // Simula login
+  navigate("/account");  // Vai pra conta
+};
+
 
     useEffect(() => {
         document.title = "Entre em sua conta";
@@ -25,7 +34,7 @@ const Login = () => {
             </Link>
 
         {/* Botão de Login com Google */}
-        <button className={styles.googleButton}>
+        <button className={styles.googleButton} onClick={handleLogin}>
           <GoogleLogo size={20} /> Entrar com Google
         </button>
 
@@ -39,7 +48,7 @@ const Login = () => {
         </div>
 
         {/* Botão de Login com Email */}
-        <button className={styles.loginButton}>Entrar com Email</button>
+        <button className={styles.loginButton} onClick={handleLogin}>Entrar com Email</button>
 
         {/* Texto sobre Termos */}
         <p className={styles.termsText}>

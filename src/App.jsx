@@ -6,8 +6,8 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Terms from "./components/Politics/Terms";
 import Privacy from "./components/Politics/Privacy";
-import Account from './components/My Account/Account';
-import PrivateRoute from './components/My Account/PrivateRoute';
+import Account from "./components/My Account/Account";
+import PrivateRoute from "./components/My Account/PrivateRoute";
 
 const Layout = ({ children }) => {
   const location = useLocation();
@@ -22,16 +22,9 @@ const Layout = ({ children }) => {
   );
 };
 
-
-{/* 🔐 Rota protegida */}
-<Route
-path="/account"
-element={
-  <PrivateRoute>
-    <Account />
-  </PrivateRoute>
-}
-/>
+Layout.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 const App = () => {
   return (
@@ -40,17 +33,23 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/account" element={<Account />} />
+          
+          {/* ✅ Rota protegida */}
+          <Route
+            path="/account"
+            element={
+              <PrivateRoute>
+                <Account />
+              </PrivateRoute>
+            }
+          />
+
           <Route path="/termos" element={<Terms />} />
           <Route path="/privacidade" element={<Privacy />} />
         </Routes>
       </Layout>
     </Router>
   );
-};
-
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
 };
 
 export default App;
