@@ -688,11 +688,20 @@ z-index: -1;
   .sectionWrapper::before {
     content: "";
     position: absolute;
-    top: -80px;
+    top: 20px;
     right: -100px;
-    width: 320px;
+    width: 220px;
   }
 
+  .priceSection::after {
+    background: radial-gradient(circle, #00000000 10%, #00000080 70%);
+  }
+  .priceCard {
+    width: auto;
+  }
+  .limitedOffer {
+    left: -1px;
+  }
   .inputGroup {
     flex-direction: column;
     gap: 15px;
@@ -730,8 +739,19 @@ z-index: -1;
     text-align: center;
   }
 
+  .faqSection {
+    padding: 120px 0;
+  }
+
+  .faqTitle {
+    font-size: 2rem;
+  }
   .faqLeft {
     max-width: 100%;
+  }
+
+  .faqRight {
+    margin-top: -50px;
   }
 
   .faqImage {
