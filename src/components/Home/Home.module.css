@@ -738,3 +738,13 @@ z-index: -1;
     margin: 20px auto;
   }
 }
+
+@media (max-width: 1600px) {
+  .sectionWrapper::before {
+    right: -20px;
+  }
+
+  .faqContainer {
+    width: 90%;
+  }
+}

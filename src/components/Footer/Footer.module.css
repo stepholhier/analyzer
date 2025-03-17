@@ -64,4 +64,10 @@
       padding: 40px;
     }
   }
+
+  @media (max-width:1600px) {
+    .footerContainer {
+      margin: 40px auto;
+    }
+  }
   

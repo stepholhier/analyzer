@@ -67,3 +67,10 @@
     margin-left: 20px;
     color: #b0b0b0;
 }
+
+@media (max-width: 1600px) {
+    .politicsContainer {
+        height: 140vh;
+        padding-top: 80px;
+    }
+}
