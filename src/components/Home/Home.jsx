@@ -138,30 +138,14 @@ const SiteAnalyzer = () => {
 )}
       </div>
 
-      {/* {showPopup && (
-        <div className={styles.popup}>
-          <div className={styles.popupContent}>
-            <h3>Obtenha o relatório completo</h3>
-            <p>Cadastre-se agora para acessar todas as informações do seu site.</p>
-            <button className={styles.registerButton} onClick={() => window.location.href = "/signin"}>
-              Criar Conta
-            </button>
-            <button className={styles.closeButton} onClick={() => setShowPopup(false)}>
-              Fechar
-            </button>
-          </div>
-        </div>
-      )} */}
-
-
     {/* Área About */}
         <AreaAbout />
 
     {/* Price */}
         <Price />
 
-      {/* FAQ */}
-      <Faq />
+    {/* FAQ */}
+        <Faq />
     </div>
   );
 };
