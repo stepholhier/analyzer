@@ -1,24 +1,25 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom"; // 🔧 Combina as importações
 import { Flipped } from "react-flip-toolkit";
 import styles from "./Login.module.css";
 import { GoogleLogo } from "@phosphor-icons/react";
 
 const Login = () => {
-
   const navigate = useNavigate();
 
-const handleLogin = () => {
-  localStorage.setItem("isLoggedIn", "true");  // Simula login
-  navigate("/account");  // Vai pra conta
-};
+  const handleLogin = () => {
+    localStorage.setItem("isLoggedIn", "true");  // Simula login
+    navigate("/account");  // Vai pra conta
+  };
 
+  useEffect(() => {
+    document.title = "Entre em sua conta";
 
-    useEffect(() => {
-        document.title = "Entre em sua conta";
-      }, []);
-
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+    if (isLoggedIn) {
+      navigate("/account");  // Já logado? Vai direto pra conta
+    }
+  }, [navigate]); 
   return (
     <div className={styles.loginContainer}>
       <div className={styles.loginBox}>
