@@ -1,20 +1,23 @@
 import { useState, useEffect, useRef } from 'react';
-import axios from 'axios';
+import { supabase } from '../../services/supabaseClient';
+import { loadStripe } from '@stripe/stripe-js';
 import styles from './Home.module.css';
-import { supabase } from '../../services/supabaseClient'; // Importa Supabase
 import OpenAILogo from '../../assets/openailogo.svg';
 import AreaAbout from './AreaAbout';
 import Price from './Price';
 import Faq from './Faq';
+import axios from 'axios';
+
+const API_URL = import.meta.env.VITE_API_URL;
+const STRIPE_KEY = import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY;
 
 const SiteAnalyzer = () => {
+  const [url, setUrl] = useState('');
+  const vantaRef = useRef(null);
+
   useEffect(() => {
     document.title = "Analyzer";
   }, []);
-
-  const [url, setUrl] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const vantaRef = useRef(null);
 
   useEffect(() => {
     if (window.VANTA) {
@@ -42,34 +45,30 @@ const SiteAnalyzer = () => {
       return;
     }
 
-    setIsLoading(true);
+    const { data: { session } } = await supabase.auth.getSession();
+
+    if (!session?.user) {
+      alert("Faça login antes de analisar o site.");
+      window.location.href = "/login";
+      return;
+    }
 
     try {
-      const { data: { session } } = await supabase.auth.getSession();
-      const email = session?.user?.email;
+      const email = session.user.email;
 
-      if (!email) {
-        alert("Faça login antes de analisar.");
-        window.location.href = "/login";
-        return;
-      }
-
-      // Envia para backend com IA
-      const response = await axios.post('http://localhost:5001/api/ia/analyze', {
+      const response = await axios.post(`${API_URL}/api/stripe/create-checkout-session`, {
+        url,
         email,
-        url
       });
 
-      console.log("Relatório gerado:", response.data);
+      const { id } = response.data;
 
-      // Redireciona após sucesso
-      window.location.href = "/account";
+      const stripe = await loadStripe(STRIPE_KEY);
+      await stripe.redirectToCheckout({ sessionId: id });
 
     } catch (error) {
-      console.error('Erro ao analisar o site:', error);
-      alert("Erro ao analisar o site.");
-    } finally {
-      setIsLoading(false);
+      console.error("Erro ao criar sessão Stripe:", error);
+      alert("Erro ao iniciar pagamento.");
     }
   };
 
@@ -79,7 +78,7 @@ const SiteAnalyzer = () => {
         <span>Com tecnologia oficial da</span>
         <img src={OpenAILogo} alt="OpenAI Logo" className={styles.badgeIcon} />
       </div>
-      
+
       <div className={styles.content}>
         <h1 className={`${styles.titleAbout} ${styles.animatedTitle}`}>
           Potencialize seu site agora
@@ -97,26 +96,14 @@ const SiteAnalyzer = () => {
             className={styles.input}
           />
 
-          {/* Botão com loading animado */}
-          {isLoading ? (
-            <button className={styles.loadingButton} disabled>
-              🔍 Analisando seu site...
-            </button>
-          ) : (
-            <button onClick={handleAnalyze} className={styles.button}>
-              Analisar agora
-            </button>
-          )}
+          <button onClick={handleAnalyze} className={styles.button}>
+            Analisar agora
+          </button>
         </div>
       </div>
 
-      {/* Área About */}
       <AreaAbout />
-
-      {/* Price */}
       <Price />
-
-      {/* FAQ */}
       <Faq />
     </div>
   );

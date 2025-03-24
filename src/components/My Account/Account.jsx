@@ -7,9 +7,10 @@ import { supabase } from "../../services/supabaseClient";
 import axios from "axios";
 
 const Account = () => {
-  const [selected, setSelected] = useState("dados");
+  const [selected, setSelected] = useState("relatorios");
   const [reports, setReports] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
   const [selectedReport, setSelectedReport] = useState(null);
   const navigate = useNavigate();
 
@@ -56,6 +57,11 @@ const Account = () => {
       setReports(reports.filter(r => r.id !== selectedReport.id));
       setShowPopup(false);
       setSelectedReport(null);
+      setShowSuccessPopup(true);
+
+      setTimeout(() => {
+        setShowSuccessPopup(false);
+      }, 2500);
     } catch (error) {
       console.error("Erro ao excluir relatório:", error);
     }
@@ -67,14 +73,14 @@ const Account = () => {
         <h2 className={styles.title}>Minha Conta</h2>
         <p className={styles.subtitle}>Gerencie seus dados e relatórios</p>
         <nav className={styles.menu}>
+        <button className={`${styles.menuItem} ${selected === "relatorios" ? styles.active : ""}`} onClick={() => setSelected("relatorios")}>
+            <FileText size={20} /> Meus relatórios
+          </button>
           <button className={`${styles.menuItem} ${selected === "dados" ? styles.active : ""}`} onClick={() => setSelected("dados")}>
             <User size={20} /> Meus dados
           </button>
           <button className={`${styles.menuItem} ${selected === "compras" ? styles.active : ""}`} onClick={() => setSelected("compras")}>
             <ShoppingCart size={20} /> Minhas compras
-          </button>
-          <button className={`${styles.menuItem} ${selected === "relatorios" ? styles.active : ""}`} onClick={() => setSelected("relatorios")}>
-            <FileText size={20} /> Meus relatórios
           </button>
           <button className={styles.menuItem} onClick={handleLogout}>
             <SignOut size={20} /> Sair
@@ -98,14 +104,14 @@ const Account = () => {
             {reports.length === 0 ? (
               <p>Você ainda não possui relatórios.</p>
             ) : (
-              <div style={{ maxHeight: '400px', overflowY: 'auto' }}>
+              <div className={styles.scrollContainer}>
                 <ul className={styles.dataList}>
                   {reports.map((report) => (
-                    <li key={report.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <li key={report.id} className={styles.reportItem}>
                       <div>
                         Relatório - {report.url} ({new Date(report.createdAt).toLocaleDateString()})
                       </div>
-                      <div style={{ display: 'flex', gap: '8px' }}>
+                      <div className={styles.buttonGroup}>
                         <a href={report.content} target="_blank" rel="noopener noreferrer">
                           <button className={styles.viewButton}>
                             <Download size={16} /> Baixar
@@ -114,7 +120,7 @@ const Account = () => {
                         <button className={styles.newReportButton} onClick={handleNewReport}>
                           <Plus size={16} /> Novo
                         </button>
-                        <button onClick={() => confirmDelete(report)} style={{ backgroundColor: 'red', color: 'white', borderRadius: '6px', padding: '4px 8px' }}>
+                        <button className={styles.deleteButton} onClick={() => confirmDelete(report)}>
                           <Trash size={16} />
                         </button>
                       </div>
@@ -127,11 +133,21 @@ const Account = () => {
         )}
 
         {showPopup && (
-          <div style={{ position: 'fixed', top: '40%', left: '50%', transform: 'translate(-50%, -50%)', backgroundColor: '#111', padding: '20px', borderRadius: '10px', zIndex: 1000, color: 'white', textAlign: 'center' }}>
-            <p>Deseja realmente excluir este relatório?</p>
-            <div style={{ marginTop: '10px', display: 'flex', gap: '10px', justifyContent: 'center' }}>
-              <button onClick={handleDelete} style={{ backgroundColor: 'red', color: 'white', padding: '6px 12px', borderRadius: '6px' }}>Confirmar Exclusão</button>
-              <button onClick={() => setShowPopup(false)} style={{ backgroundColor: '#333', color: 'white', padding: '6px 12px', borderRadius: '6px' }}>Cancelar</button>
+          <div className={styles.overlay}>
+            <div className={`${styles.popup} ${styles.popupAnimation}`}>
+              <p>Deseja realmente excluir este relatório?</p>
+              <div className={styles.popupButtons}>
+                <button onClick={handleDelete} className={styles.confirmButton}>Confirmar Exclusão</button>
+                <button onClick={() => setShowPopup(false)} className={styles.cancelButton}>Cancelar</button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {showSuccessPopup && (
+          <div className={styles.overlay}>
+            <div className={`${styles.popup} ${styles.popupAnimation}`}>
+              <p>Relatório excluído com sucesso!</p>
             </div>
           </div>
         )}

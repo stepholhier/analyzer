@@ -215,6 +215,109 @@
     border-radius: 4px;
   }
   
+  .scrollContainer {
+    max-height: 400px;
+    overflow-y: auto;
+  }
+  
+  .reportItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  
+  .buttonGroup {
+    display: flex;
+    gap: 8px;
+  }
+  
+  .deleteButton {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 6px 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+  }
+  
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease;
+    z-index: 1000;
+  }
+  
+  .popup {
+    background-color: black;
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+    animation: scaleIn 0.3s ease;
+    max-width: 320px;
+  }
+  
+  .popupButtons {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+  }
+  
+  .confirmButton {
+    background-color: red;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .cancelButton {
+    background-color: #333;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0 }
+    to { opacity: 1 }
+  }
+  
+  @keyframes scaleIn {
+    from { transform: scale(0.8); opacity: 0 }
+    to { transform: scale(1); opacity: 1 }
+  }
+
+  .confirmButton {
+    background-color: #ff1a1a;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .popup p {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+  }
+  
+  
   
   /* RESPONSIVO MOBILE */
 @media (max-width: 767px) {

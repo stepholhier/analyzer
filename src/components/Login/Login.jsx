@@ -3,7 +3,11 @@ import { useNavigate, Link } from "react-router-dom";
 import { Flipped } from "react-flip-toolkit";
 import styles from "./Login.module.css";
 import { GoogleLogo } from "@phosphor-icons/react";
-import { loginWithGoogle, loginWithEmail } from "../../services/authService"
+import { loginWithGoogle, loginWithEmail } from "../../services/authService";
+import { supabase } from "../../services/supabaseClient";
+import axios from "axios";
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 const Login = () => {
   const navigate = useNavigate();
@@ -13,14 +17,29 @@ const Login = () => {
   useEffect(() => {
     document.title = "Entre em sua conta";
 
-    // Opcional: redirecionar se já estiver logado (Supabase tem método pra isso)
-    // Exemplo:
-    // const session = await supabase.auth.getSession();
-    // if (session) navigate("/account");
+    const checkSession = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session?.user) {
+        // 🔄 Associa relatórios temporários
+        try {
+          await axios.post(`${API_URL}/api/reports/assign-temp`, {
+            tempId: localStorage.getItem('tempId'),
+            realEmail: session.user.email
+          });
+          localStorage.removeItem('tempId');
+        } catch (error) {
+          console.error("Erro ao associar relatórios:", error);
+        }
+
+        navigate("/account");
+      }
+    };
+
+    checkSession();
   }, [navigate]);
 
   const handleGoogleLogin = async () => {
-    await loginWithGoogle(); // Redireciona para Google → payment
+    await loginWithGoogle();
   };
 
   const handleEmailLogin = async () => {
@@ -35,7 +54,6 @@ const Login = () => {
   return (
     <div className={styles.loginContainer}>
       <div className={styles.loginBox}>
-        {/* Logo */}
         <Link to="/">
           <h1 className={styles.logo}>
             {["A", "N", "A", "L", "Y", "Z", "E", "R"].map((letter, index) => (
@@ -46,15 +64,12 @@ const Login = () => {
           </h1>
         </Link>
 
-        {/* Botão de Login com Google */}
         <button className={styles.googleButton} onClick={handleGoogleLogin}>
           <GoogleLogo size={20} /> Entrar com Google
         </button>
 
-        {/* Separador */}
         <div className={styles.separator}>OU</div>
 
-        {/* Campo de Email */}
         <div className={styles.inputGroup}>
           <label>Email</label>
           <input
@@ -65,14 +80,12 @@ const Login = () => {
           />
         </div>
 
-        {/* Botão de Login com Email */}
         <button className={styles.loginButton} onClick={handleEmailLogin}>
           Entrar com Email
         </button>
 
         {message && <p className={styles.message}>{message}</p>}
 
-        {/* Texto sobre Termos */}
         <p className={styles.termsText}>
           Ao continuar, você concorda com nossos <Link to="/termos">Termos de Serviço</Link>.
         </p>
