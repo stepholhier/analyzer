@@ -177,6 +177,44 @@
   .saveButton:hover {
     background: #2e835e;
   }
+
+  .newReportButton {
+    margin-left: 10px;
+    background-color: #10b981;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: background 0.2s ease;
+  }
+  
+  .newReportButton:hover {
+    background-color: #059669;
+  }
+  
+  .scrollableList {
+    max-height: 300px; /* ou ajuste conforme o layout */
+    overflow-y: auto;
+    padding-right: 8px; /* espaço pro scroll */
+    margin-top: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+  
+  /* Estilizar o scroll (opcional, só pra deixar bonito) */
+  .scrollableList::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .scrollableList::-webkit-scrollbar-thumb {
+    background-color: #999;
+    border-radius: 4px;
+  }
+  
   
   /* RESPONSIVO MOBILE */
 @media (max-width: 767px) {
