@@ -1,34 +1,36 @@
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import { supabase } from '../../services/supabaseClient';
+import styles from './Payment.module.css';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
 const Payment = () => {
+  const [error, setError] = useState(null);
+  const alreadyProcessed = useRef(false);
+
+  useEffect(() => {
+    document.title = "Analyzer - Pagamento";
+  }, []);
+
   useEffect(() => {
     const processPayment = async () => {
+      if (alreadyProcessed.current) return;
+      alreadyProcessed.current = true;
+
       const url = localStorage.getItem('pendingUrl');
       const { data: { session } } = await supabase.auth.getSession();
       const email = session?.user?.email;
 
       if (!url || !email) {
-        alert("Erro ao processar pagamento.");
+        setError("Erro ao processar pagamento. Tente novamente mais tarde!");
         return;
       }
 
-      const reportText = `
-🔍 Relatório de Análise para: ${url}
-1. Conteúdo bom.
-2. SEO bom.
-3. Imagens otimizadas.
-4. Acessível.
-5. Sugestões: otimize carregamento.`;
-
       try {
-        await axios.post(`${API_URL}/api/reports/save`, {
+        await axios.post(`${API_URL}/api/ia/analyze`, {
           url,
-          content: reportText,
-          userEmail: email,
+          email,
         });
 
         localStorage.removeItem('pendingUrl');
@@ -36,14 +38,30 @@ const Payment = () => {
 
       } catch (error) {
         console.error("Erro ao salvar relatório:", error);
-        alert("Erro ao salvar relatório.");
+        setError("Erro ao salvar relatório.");
       }
     };
 
     processPayment();
   }, []);
 
-  return <div>Processando pagamento... ⏳</div>;
+  return (
+    <div className={styles.wrapper}>
+      {error ? (
+        <div className={styles.errorBox}>
+          <p className={styles.error}>{error}</p>
+          <button className={styles.backButton} onClick={() => window.location.href = "/"}>
+            Voltar para Home
+          </button>
+        </div>
+      ) : (
+        <div className={styles.loadingBox}>
+          <div className={styles.loader}></div>
+          <p className={styles.message}>Gerando relatório, aguarde!</p>
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default Payment;

@@ -316,7 +316,23 @@
     font-size: 16px;
     font-weight: 500;
   }
+
+  .backButton {
+    padding: 0.6rem 1.2rem;
+    background-color: white;
+    color: #333;
+    border: 2px solid #333;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+    font-family: 'Inter';
+  }
   
+  .backButton:hover {
+    background-color: #f0f0f0;
+  }
   
   
   /* RESPONSIVO MOBILE */

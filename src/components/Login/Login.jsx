@@ -13,6 +13,7 @@ const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+  const [justLoggedIn, setJustLoggedIn] = useState(false); // 👈 Novo estado
 
   useEffect(() => {
     document.title = "Entre em sua conta";
@@ -20,7 +21,6 @@ const Login = () => {
     const checkSession = async () => {
       const { data: { session } } = await supabase.auth.getSession();
       if (session?.user) {
-        // 🔄 Associa relatórios temporários
         try {
           await axios.post(`${API_URL}/api/reports/assign-temp`, {
             tempId: localStorage.getItem('tempId'),
@@ -31,14 +31,20 @@ const Login = () => {
           console.error("Erro ao associar relatórios:", error);
         }
 
-        navigate("/account");
+        // ✅ Redireciona com base na origem do login
+        if (justLoggedIn) {
+          navigate("/");
+        } else {
+          navigate("/account");
+        }
       }
     };
 
     checkSession();
-  }, [navigate]);
+  }, [navigate, justLoggedIn]); // 👈 Reage ao justLoggedIn
 
   const handleGoogleLogin = async () => {
+    setJustLoggedIn(true); // 👈 Marca login manual
     await loginWithGoogle();
   };
 
@@ -47,6 +53,7 @@ const Login = () => {
       setMessage("Digite um e-mail válido.");
       return;
     }
+    setJustLoggedIn(true); // 👈 Marca login manual
     await loginWithEmail(email);
     setMessage("Verifique seu e-mail para o link de acesso.");
   };

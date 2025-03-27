@@ -8,6 +8,8 @@ import Terms from "./components/Politics/Terms";
 import Privacy from "./components/Politics/Privacy";
 import Account from "./components/My Account/Account";
 import PrivateRoute from "./components/My Account/PrivateRoute";
+import Payment from "./components/Payments/Payment";
+
 
 const Layout = ({ children }) => {
   const location = useLocation();
@@ -33,6 +35,8 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/payment" element={<Payment />} />
+
           
           {/* ✅ Rota protegida */}
           <Route

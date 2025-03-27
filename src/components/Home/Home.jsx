@@ -44,34 +44,37 @@ const SiteAnalyzer = () => {
       alert("Por favor, insira a URL do site.");
       return;
     }
-
+  
     const { data: { session } } = await supabase.auth.getSession();
-
+  
     if (!session?.user) {
       alert("Faça login antes de analisar o site.");
       window.location.href = "/login";
       return;
     }
-
+  
     try {
       const email = session.user.email;
-
+  
+      // ✅ Salva a URL localmente antes de redirecionar
+      localStorage.setItem('pendingUrl', url);
+  
       const response = await axios.post(`${API_URL}/api/stripe/create-checkout-session`, {
         url,
         email,
       });
-
+  
       const { id } = response.data;
-
+  
       const stripe = await loadStripe(STRIPE_KEY);
       await stripe.redirectToCheckout({ sessionId: id });
-
+  
     } catch (error) {
       console.error("Erro ao criar sessão Stripe:", error);
       alert("Erro ao iniciar pagamento.");
     }
   };
-
+  
   return (
     <div ref={vantaRef} className={styles.container} id="siteInput">
       <div className={styles.technologyBadge}>

@@ -102,7 +102,12 @@ const Account = () => {
           <div className={styles.section}>
             <h3>Meus Relatórios</h3>
             {reports.length === 0 ? (
+              <div>
               <p>Você ainda não possui relatórios.</p>
+              <button className={styles.backButton} onClick={() => window.location.href = "/"}>
+                Comprar agora
+              </button>
+              </div>
             ) : (
               <div className={styles.scrollContainer}>
                 <ul className={styles.dataList}>

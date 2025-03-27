@@ -1,5 +1,9 @@
 import { useState, useEffect } from "react";
 import styles from "./Account.module.css";
+import { supabase } from "../../services/supabaseClient";
+import axios from "axios";
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 const MeusDados = () => {
   const [dados, setDados] = useState({
@@ -12,14 +16,25 @@ const MeusDados = () => {
 
   const [cpfBloqueado, setCpfBloqueado] = useState(false);
 
-  // Carregar dados salvos ao abrir a página
   useEffect(() => {
-    const dadosSalvos = localStorage.getItem("meusDados");
-    if (dadosSalvos) {
-      const parsedDados = JSON.parse(dadosSalvos);
-      setDados(parsedDados);
-      if (parsedDados.cpf) setCpfBloqueado(true);
-    }
+    const fetchUserData = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      const email = session?.user?.email;
+      const nome = session?.user?.user_metadata?.full_name || "";
+
+      if (email) {
+        try {
+          const { data } = await axios.post(`${API_URL}/api/userdata/save`, dados);
+          setDados(data || { email, nome, cpf: "", telefone: "", nascimento: "" });
+          if (data?.cpf) setCpfBloqueado(true);
+        } catch (err) {
+          console.error("Erro ao buscar dados:", err);
+          setDados({ email, nome, cpf: "", telefone: "", nascimento: "" });
+        }
+      }
+    };
+
+    fetchUserData();
   }, []);
 
   const handleChange = (e) => {
@@ -35,10 +50,30 @@ const MeusDados = () => {
     }));
   };
 
-  const handleSalvar = () => {
-    localStorage.setItem("meusDados", JSON.stringify(dados));
-    alert("Dados salvos com sucesso! ✔️");
+  const handleSalvar = async () => {
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
+  
+    const email = session?.user?.email;
+  
+    if (!email) {
+      alert("Não foi possível identificar o usuário.");
+      return;
+    }
+  
+    try {
+      await axios.post(`${API_URL}/api/userdata/save`, {
+        ...dados,
+        email, // força o email
+      });
+      alert("Dados salvos com sucesso! ✔️");
+    } catch (err) {
+      console.error("Erro ao salvar dados:", err);
+      alert("Erro ao salvar dados.");
+    }
   };
+  
 
   return (
     <div className={styles.formContainer}>
@@ -53,6 +88,11 @@ const MeusDados = () => {
             onChange={handleChange}
             required
           />
+        </div>
+
+        <div className={styles.formGroup}>
+          <label>Email *</label>
+          <input type="email" value={dados.email} disabled />
         </div>
 
         <div className={styles.formGroup}>
